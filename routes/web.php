@@ -17,9 +17,31 @@ Route::get('/', function () {
 });
 */
 Route::get('/', function () {
-    return view('swapzero');
+    return view('swap');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/faq', function () {
+    return view('faq');
+});
+Route::get('/plans', function () {
+    return view('plans');
+})->name('plans');
+Route::get('/crypto', function () {
+    return view('crypto');
+});
+Route::get('/wallet', function () {
+    return view('wallet');
+});
+Route::get('/internation', function () {
+    return view('internation');
+});
+
+
+
+//Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+

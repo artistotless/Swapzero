@@ -2,8 +2,7 @@
     margin: 15px 0px 15px 0px;
     padding: 5px;
     height: 169px;
-    border-radius: 5px;
-    background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-image: linear-gradient(152deg, #667eea 68%, #764ba2 100%);
 ">
         <div class="col-xl-3 col-sm-6 mb-4" style="height: 168px;">
           <div class="box bg_primary" style="
@@ -59,13 +58,14 @@
 ">
               <div class="box-head d-flex align-items-center justify-content-between">
                   <h3>От 10 RUB</h3>
-                  <i class="fas fa-ruble-sign"></i>
+                  <i class="fas fa-ruble-sign" style="
+"></i>
               </div>
               <div class="box-body d-flex align-items-center justify-content-between">
-                <span>Обменивай любые валюты начиная с 10 рублей.
+                <span>Любые операции начиная с 10 рублей.
 </span>
                 
               </div>
          </div>
         </div>
-      </div>    
+      </div>

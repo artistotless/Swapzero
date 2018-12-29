@@ -1,47 +1,52 @@
-@extends('layouts.app')
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Восстановление пароля</title>
+    @include('layouts.light.styles')
+</head>
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
-
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    <form class="form-horizontal" method="POST" action="{{ route('password.email') }}">
-                        {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
+<body>
+    
+  <div class="bg_image h-100">
+      <div class="lr_wrap">
+          <div class="card-body">
+          	<div class="lr_icon text-center">
+          	<a href="{{ url('/') }}" >
+          	<img src="{{ asset('index_files/logo_dark.png') }}" alt="logo">
+          	</a>
+            </div>	
+            
+            <form method="POST" action="{{ route('password.email') }}" style="
+    margin-top: 25px;
+">
+{{ csrf_field() }}
+              <div class="form-group">
+                                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                <label for="exampleInputEmail1">Email</label>
+                <input id="email" type="email" class="form-control" name="email" placeholder="example@site.net" value="{{ old('email') }}"  required autofocus>
+                    @if ($errors->has('email'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Send Password Reset Link
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+              </div>
+        
+        
+              <button type="submit" class="btn btn-default btn-block">Сбросить пароль</button>
+            </form>
+       
+          </div>
         </div>
-    </div>
-</div>
-@endsection
+  </div>
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+
+
+</body></html>
