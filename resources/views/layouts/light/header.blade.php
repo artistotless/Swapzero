@@ -137,9 +137,9 @@
             {{ Auth::user()->name }} </a>
             <div style="    min-width: 201px;" class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
             <ul class="menu-nav list_none">
-                <li><a href="profile.html"><i class="icon-user"></i><span>Мой профиль</span></a></li>
-                <li><a href="my-wallet.html"><i class="icon-pie-chart icons"></i><span>Статистика</span></a></li>
-                 <li><a href="my-wallet.html"><i class="icon-settings icons"></i><span>Настройки</span></a></li>
+                <li><a href="{{ route('profile') }}"><i class="icon-user"></i><span>Мой профиль</span></a></li>
+                <li><a href="javascript:void(0)"><i class="icon-pie-chart icons"></i><span>Статистика</span></a></li>
+                 <li><a href="javascript:void(0)"><i class="icon-settings icons"></i><span>Настройки</span></a></li>
                 <li><div class="dropdown-divider"></div></li>
                  <li><a href="{{ route('plans') }}"><i style="color:#fc5c7d;" class="icon-graduation icons"></i><span>Тариф: {{ Auth::user()->plan }}</span></a></li>
                 <li><div class="dropdown-divider"></div></li>

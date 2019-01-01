@@ -14,12 +14,18 @@
     
   <div class="bg_image h-100">
       <div class="lr_wrap">
-          <div class="card-body">
-          	<div class="lr_icon text-center">
-          	<a href="{{ url('/') }}" >
-          	<img src="{{ asset('index_files/logo_white.jpg') }}" alt="logo">
+      <div class="authlogo" style="
+    padding: 14px;
+    background: #282a3c;
+"><div class="lr_icon text-center" style="
+
+">
+          	<a href="https://steam365.ru">
+          	<img src="https://steam365.ru/index_files/logo.jpg" alt="logo">
           	</a>
-            </div>	
+            </div></div>
+          <div class="card-body login-box">
+        
             
             <form  method="POST" action="{{ route('register') }}" style="
     margin-top: 25px;

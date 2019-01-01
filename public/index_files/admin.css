@@ -6,7 +6,7 @@ html {
 	transition:1s;
 }
  #logowhite:hover {
-		background:url(https://steam365.ru/index_files/logo_hover.png)!important;
+		background:url(https://steam365.ru/index_files/logo_hover.jpg)!important;
 		transform: translateX(10px);
 }
  .plansplit{
@@ -902,8 +902,8 @@ background: #f4f4f4;
 	top: 0;
 }
 .lr_wrap {
-	background-color: #fff;
-	border-top: 2px solid #fc5c7d;
+	background-color: #ffffff;
+	border-top: 3px solid #fd5c7e;
 	left: 0;
 	margin: 0 auto;
 	max-width: 350px;

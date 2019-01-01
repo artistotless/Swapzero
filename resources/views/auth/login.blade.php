@@ -6,18 +6,25 @@
   <meta name="author" content="">
   <title>Авторизация пользователя</title>
     @include('layouts.light.styles')
+     @include('layouts.light.scripts')
 </head>
 
 <body> 
     
   <div class="bg_image h-100">
       <div class="lr_wrap">
-          <div class="card-body">
-          	<div class="lr_icon text-center">
-          	<a href="{{ url('/') }}" >
-          	<img src="{{ asset('index_files/logo_white.jpg') }}" alt="logo">
+      <div class="authlogo" style="
+    padding: 14px;
+    background: #282a3c;
+"><div class="lr_icon text-center" style="
+
+">
+          	<a href="https://steam365.ru">
+          	<img src="https://steam365.ru/index_files/logo.jpg" alt="logo">
           	</a>
-            </div>	
+            </div></div>
+          <div class="card-body login-box">
+        
             
             <form method="POST" action="{{ route('login') }}" style="
     margin-top: 25px;
@@ -43,6 +50,24 @@
                                     </span>
                                 @endif
               </div>
+          
+                        <div class="form-group">
+               
+              <label for=""></label>
+              <img src="{{ captcha_src() }}" alt="captcha" class="captcha-img" data-refresh-config="default"><a href="javascript:void(0)" id="refresh" style="margin-left: 10px;"><span class="icon 
+    icon-refresh icons
+    "></span></a></p>
+          </div>
+          <div class="form-group">
+          <div class="form-group{{ $errors->has('captcha') ? ' has-error' : '' }}">
+              <label>Символы с картинки</label>
+              <input class="form-control" type="text" name="captcha"/>
+                @if ($errors->has('captcha'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('captcha') }}</strong>
+                                    </span>
+                                @endif
+          </div>
               <div class="form-group">
                 <div class="form-check">
                   <label class="form-check-label">
@@ -59,12 +84,18 @@
           </div>
         </div>
   </div>
-  <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
+<script>
+    $('#refresh').on('click',function(){
+        var captcha = $('img.captcha-img');
+        var config = captcha.data('refresh-config');
+        $.ajax({
+            method: 'GET',
+            url: '/get_captcha/' + config,
+        }).done(function (response) {
+            captcha.prop('src', response);
+        });
+    });
+</script>
 
 
 </body></html>

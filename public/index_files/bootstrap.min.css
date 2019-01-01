@@ -9,6 +9,9 @@
 .help-block{
 	color:#fc5c7d;
 }
+.login-box{
+	padding-top: 0px !important;
+}
 @media (max-width: 991px) {
 .container{
 	    margin-top: 0px!important;
