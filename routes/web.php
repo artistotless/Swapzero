@@ -37,11 +37,14 @@ Route::get('/wallet', function () {
 Route::get('/internation', function () {
     return view('internation');
 });
+Route::get('/profile', function () {
+    return view('profile');
+});
 
-
+Route::get('/get_captcha/{config?}', function (\Mews\Captcha\Captcha $captcha, $config = 'default') {
+    return $captcha->src($config);
+});
 
 //Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
-
-

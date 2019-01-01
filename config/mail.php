@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    'host' => env('MAIL_HOST', '14247.cloud.hosted-by-virtualdc.ru'),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'admin@steam365.ru'),
         'name' => env('MAIL_FROM_NAME', 'Swapzero'),
     ],
 
@@ -84,9 +84,9 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME'),
+    'username' => env('MAIL_USERNAME','admin@steam365.ru'),
 
-    'password' => env('MAIL_PASSWORD'),
+    'password' => env('MAIL_PASSWORD','jkey7232050'),
 
     /*
     |--------------------------------------------------------------------------
@@ -98,7 +98,7 @@ return [
     | been provided here, which will work well on most of your systems.
     |
     */
-
+ 
     'sendmail' => '/usr/sbin/sendmail -bs',
 
     /*

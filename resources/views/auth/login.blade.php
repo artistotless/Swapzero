@@ -8,14 +8,14 @@
     @include('layouts.light.styles')
 </head>
 
-<body>
+<body> 
     
   <div class="bg_image h-100">
       <div class="lr_wrap">
           <div class="card-body">
           	<div class="lr_icon text-center">
           	<a href="{{ url('/') }}" >
-          	<img src="{{ asset('index_files/logo_dark.png') }}" alt="logo">
+          	<img src="{{ asset('index_files/logo_white.jpg') }}" alt="logo">
           	</a>
             </div>	
             

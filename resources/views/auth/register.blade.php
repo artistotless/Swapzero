@@ -6,8 +6,10 @@
   <meta name="author" content="">
   <title>Регистрация пользователя</title>
     @include('layouts.light.styles')
-</head>
+        @include('layouts.light.scripts')
 
+</head>
+ 
 <body>
     
   <div class="bg_image h-100">
@@ -15,7 +17,7 @@
           <div class="card-body">
           	<div class="lr_icon text-center">
           	<a href="{{ url('/') }}" >
-          	<img src="{{ asset('index_files/logo_dark.png') }}" alt="logo">
+          	<img src="{{ asset('index_files/logo_white.jpg') }}" alt="logo">
           	</a>
             </div>	
             
@@ -56,12 +58,29 @@
               </div>
               
                <div class="form-group">
-               <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+               <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
                 <label for="name">Повторите пароль</label>
-                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                <input id="password-confirm" type="password" class="form-control" placeholder="******" name="password_confirmation" required>
                 
               </div>
               
+               <div class="form-group">
+               
+              <label for=""></label>
+              <img src="{{ captcha_src() }}" alt="captcha" class="captcha-img" data-refresh-config="default"><a href="javascript:void(0)" id="refresh" style="margin-left: 10px;"><span class="icon 
+    icon-refresh icons
+    "></span></a></p>
+          </div>
+          <div class="form-group">
+          <div class="form-group{{ $errors->has('captcha') ? ' has-error' : '' }}">
+              <label>Символы с картинки</label>
+              <input class="form-control" type="text" name="captcha"/>
+                @if ($errors->has('captcha'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('captcha') }}</strong>
+                                    </span>
+                                @endif
+          </div>
           
              
               <button type="submit" class="btn btn-default btn-block">Зарегистрироваться</button>
@@ -73,12 +92,19 @@
           </div>
         </div>
   </div>
-  <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
+  
+<script>
+    $('#refresh').on('click',function(){
+        var captcha = $('img.captcha-img');
+        var config = captcha.data('refresh-config');
+        $.ajax({
+            method: 'GET',
+            url: '/get_captcha/' + config,
+        }).done(function (response) {
+            captcha.prop('src', response);
+        });
+    });
+</script>
 
 
 </body></html>

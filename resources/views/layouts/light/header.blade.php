@@ -4,7 +4,7 @@
         <span class="logo" id="logowhite" style="
     display: block;
     width: 200px;
-    background: url({{ asset('index_files/logo.png') }});
+    background: url({{ asset('index_files/logo.jpg') }});
     height: 43px;
 "></span>
     </a>
