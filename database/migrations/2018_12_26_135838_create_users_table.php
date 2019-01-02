@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
               $table->text('paydata')->nullable();
               $table->text('vk')->nullable();
               $table->text('tg')->nullable();
+
             $table->rememberToken();
             $table->timestamps();
         });

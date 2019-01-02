@@ -15,6 +15,7 @@
   <title>@yield('title') | Swapzero - Платёжная система, p2p биржа , обмен валют.</title>
   
   @include('layouts.light.styles')
+       @include('layouts.light.scripts')
   </head>
   
   <body class="fixed-nav sticky-footer" id="page-top" style="">

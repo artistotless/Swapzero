@@ -20,7 +20,7 @@
 
 ">
           	<a href="https://steam365.ru">
-          	<img src="https://steam365.ru/index_files/logo.jpg" alt="logo">
+          	<img src="{{ asset('index_files/logo.jpg') }}" alt="logo">
           	</a>
             </div></div>
           <div class="card-body login-box">
@@ -33,6 +33,7 @@
               <div class="form-group">
               <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                 <label for="exampleInputEmail1">Email</label>
+
                 <input id="email" type="email" class="form-control" name="email" placeholder="example@site.net" value="{{ old('email') }}"  required autofocus>
                     @if ($errors->has('email'))
                                     <span class="help-block">

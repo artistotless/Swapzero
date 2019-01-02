@@ -20,7 +20,7 @@
 
 ">
           	<a href="https://steam365.ru">
-          	<img src="https://steam365.ru/index_files/logo.jpg" alt="logo">
+          	<img src="{{ asset('index_files/logo.jpg') }}" alt="logo">
           	</a>
             </div></div>
           <div class="card-body login-box">

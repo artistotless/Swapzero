@@ -4,7 +4,8 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <!-- Page level plugin JavaScript-->
 
- 
+ <script src="{{ asset('index_files/jquery.async-gravatar.js') }}"></script>
+
     <script src="{{ asset('index_files/perfect-scrollbar.js') }}"></script>
     <!-- countdown js  --> 
     <!-- Custom scripts for all pages-->
