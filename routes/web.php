@@ -19,6 +19,7 @@ Route::get('/', function () {
 Route::get('/', function () {
     return view('swap');
 });
+Route::get('auth/activate','ActivateEmailController@activate');
 
 Auth::routes();
 
@@ -38,8 +39,9 @@ Route::get('/internation', function () {
     return view('internation');
 });
 
-Route::get('/profile', 'ProfileController@index')->name('profile');;
+Route::get('/profile', 'ProfileController@index')->name('profile');
 
+Route::get('/stats', 'StatsController@index')->name('stats');
 
 
 Route::get('/get_captcha/{config?}', function (\Mews\Captcha\Captcha $captcha, $config = 'default') {

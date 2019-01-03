@@ -1,5 +1,5 @@
  @extends('layouts.light')
-@section('title', 'Профиль пользователя')
+@section('title', 'Моя статистика')
 @section('content')
 <div id="profilepage">
 

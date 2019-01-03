@@ -14,7 +14,7 @@
                   <i class="fas fa-fighter-jet"></i>
               </div>
               <div class="box-body d-flex align-items-center justify-content-between">
-                <span>Полуавтоматическая система обмена.</span>
+                <span>Полуавтоматическая система покупки/продажи.</span>
                 
               </div>
          </div>

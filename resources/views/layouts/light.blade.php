@@ -26,6 +26,21 @@
      
   </nav>
   <div class="content-wrapper">
+   @if (Auth::check())
+   @if (Auth::user()->activated == "0")
+  <div class="tab_nav">
+                	<ul role="tablist" id="pills-tab" class="nav nav-pills">
+                  <li class="nav-item">
+                    <div data-toggle="tab" class="tab-link active" style="
+">Ваш аккаунт не активирован. Письмо для активации выслано вам на почту ({{Auth::user()->email}})</div>
+                  </li>
+                  
+                  
+                  
+                </ul>
+                </div>
+                @endif
+                @endif
     <div class="container-fluid">
     
         <!-- PITCH BLOCK-->

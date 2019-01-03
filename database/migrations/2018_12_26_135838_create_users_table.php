@@ -21,10 +21,9 @@ class CreateUsersTable extends Migration
              $table->string('plan')->default("Free");
 			 $table->date('start_plan')->nullable();
 			 $table->date('end_plan')->nullable();
-              $table->text('paydata')->nullable();
               $table->text('vk')->nullable();
               $table->text('tg')->nullable();
-
+             $table->boolean('activated')->default(0); 
             $table->rememberToken();
             $table->timestamps();
         });
