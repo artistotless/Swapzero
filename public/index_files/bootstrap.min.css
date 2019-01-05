@@ -13,9 +13,10 @@
 	padding-top: 0px !important;
 }
 .user-info-avatar {
-    width: 100px;
-    height: 100px;
-    line-height: 30px;
+    line-height: 18px;
+    width: 62px;
+    height: 62px;
+    margin: 7px 0px 12px 0px;
     border-radius: 100%;
     text-align: center;
     padding: 32% 0 25% 0;

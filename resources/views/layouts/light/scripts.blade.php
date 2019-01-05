@@ -11,4 +11,5 @@
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('index_files/admin.js') }}"></script>
     <!-- Custom scripts for this page-->
-    <script src="{{ asset('index_files/admin-charts.min.js') }}"></script>
+    
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>

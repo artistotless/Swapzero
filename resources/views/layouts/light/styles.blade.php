@@ -21,7 +21,8 @@
   
   
   <!-- CSS STYLES-->
-  
+
+     
    <link href="{{ asset('index_files/bootstrap.min.css') }}" rel="stylesheet">
   <!-- Custom fonts for this template-->
   <link href="https://fonts.googleapis.com/css?family=Roboto&amp;subset=cyrillic" rel="stylesheet">
@@ -37,3 +38,4 @@
   <link href="{{ asset('index_files/dataTables.bootstrap4.css') }}" rel="stylesheet">
   <!-- Custom styles for this template-->
   <link href="{{ asset('index_files/admin.css') }}" rel="stylesheet">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">

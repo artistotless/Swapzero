@@ -23,7 +23,11 @@ class CreateUsersTable extends Migration
 			 $table->date('end_plan')->nullable();
               $table->text('vk')->nullable();
               $table->text('tg')->nullable();
+              $table->integer('cashalltime')->default(0);
+              $table->float('rep', 7, 2)->default(0); ;
+              
              $table->boolean('activated')->default(0); 
+             $table->boolean('identified')->default(0); 
             $table->rememberToken();
             $table->timestamps();
         });

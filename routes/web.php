@@ -39,9 +39,15 @@ Route::get('/internation', function () {
     return view('internation');
 });
 
-Route::get('/profile', 'ProfileController@index')->name('profile');
+Route::get('/myprofile', 'ProfileController@myprofile')->name('myprofile');
+
+Route::post('/applysettings', 'ProfileController@settings')->name('applysettings');
+
+Route::get('/settings', 'ProfileController@settings')->name('settings');
 
 Route::get('/stats', 'StatsController@index')->name('stats');
+
+
 
 
 Route::get('/get_captcha/{config?}', function (\Mews\Captcha\Captcha $captcha, $config = 'default') {

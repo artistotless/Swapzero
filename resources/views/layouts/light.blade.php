@@ -44,7 +44,10 @@
     <div class="container-fluid">
     
         <!-- PITCH BLOCK-->
-        @include('layouts.light.pitch')
+        @section('pitch')
+     @include('layouts.light.pitch')
+    @show
+        
     <!-- CONTENT BLOCK-->
       
       @yield('content')

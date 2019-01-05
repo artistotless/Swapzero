@@ -9,6 +9,10 @@ html {
 		background:url(https://steam365.ru/index_files/logo_hover.jpg)!important;
 		transform: translateX(10px);
 }
+.info-prof{
+	margin: 11px;
+	font-size: 15px !important;
+}
  .plansplit{
      	flex: 0 0 33.333333%;
      	max-width: 33.333333%!important;
@@ -440,20 +444,26 @@ body.sidenav-toggled #mainNav .navbar-brand {
 .box-head h3 {
 	margin: 0;
 }
+.info-prof-span{
+	margin-left:10px;
+	border:1px solid #667eea;
+	border-radius:5px;
+	background: #ffffff;
+	color: #556ac5;
+	padding:1px 6px 1px 6px;
+}
 .box-head i {
 	color: rgb(175, 190, 255);
 	/* font-size: 38px; */
 	text-align: center;
 }
 .box-body {
-	margin-top: 20px;
+	/* margin-top: 20px; */
 	font-size: 14px;
 }
 .bg_primary {
 }
 .bg_info {
-	/* background-color: #000000; */
-	/* background-image: linear-gradient(to top, #6a72d9 0%, #6f86d6 100%); */
 }
 .bg_secondary {
 	/* background-color: #ffffff00; */
@@ -923,9 +933,9 @@ background: #f4f4f4;
 	position: relative;
 }
 .user_pic_wrap img {
-	border: 2px solid #f4f5f8;
+	/* border: 2px solid #f4f5f8; */
 	border-radius: 100%;
-	max-width: 120px;
+	max-width: 72px;
 	padding: 10px;
 }
 .edit_pic {
@@ -1052,10 +1062,12 @@ background: #f4f4f4;
 	content: normal;
 }
 .social_icon {
-	display: inline-block;
-	margin: 15px 0 0;
-	padding: 0;
+	display: inline-table;
+	margin: 0px 0px 12px 0px;
+	align-content: center;
 	vertical-align: middle;
+	padding: 0;
+	/* vertical-align: inherit; */
 }
 .social_icon li {
 	float: left;
@@ -1065,7 +1077,7 @@ background: #f4f4f4;
 	margin: 0;
 }
 .social_icon li a i {
-	background-color: #fb5c7c;
+	background-color: #fc5b7d;
 	border-radius: 100%;
 	color: #ffffff;
 	display: block;
@@ -1076,7 +1088,7 @@ background: #f4f4f4;
 	width: 30px;
 }
 .social_icon li a i:hover {
-	background-color: #1c1d2a;
+	background-color: #282a3c;
 }
 .tk_countdown_time {
 	border: 1px solid #1c1d2a;
@@ -1650,6 +1662,10 @@ body.sidenav-toggled footer.sticky-footer {
 .btn{border-radius: 0px; }
 #pitch{
 	display:none;
+}
+.prof-card{
+	flex: 0 0 100% !important;
+	max-width: 100% !important;
 }
 #logowhite{
 	display:none;
