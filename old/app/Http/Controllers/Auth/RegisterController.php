@@ -7,10 +7,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
-use App\Code;
-use Illuminate\Support\Facades\Mail;
-use App\Http\Controllers\CodeController;
-
 class RegisterController extends Controller
 {
     /*
@@ -31,7 +27,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -48,14 +44,13 @@ class RegisterController extends Controller
      *
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
-     'captcha' => 'required|captcha',  */
+     */
     protected function validator(array $data)
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
-            
         ]);
     }
 
@@ -67,23 +62,10 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-      $user = User::create([
+        return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
-        
-    $code = CodeController::generateCode(8);
-    Code::create([
-        'user_id' => $user->id,
-        'code' => $code,
-    ]);
-        //Генерируем ссылку и отправляем письмо на указанный адрес
-    /*$url = url('/').'/auth/activate?id='.$user->id.'&code='.$code;      
-    Mail::send('emails.registration', array('url' => $url), function($message) use ($data)
-    {          
-        $message->to($data['email'])->subject('Подтверждение аккаунта');
-    });*/
-      return $user;
     }
 }
