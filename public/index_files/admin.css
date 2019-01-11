@@ -6,7 +6,7 @@ html {
 	transition:1s;
 }
  #logowhite:hover {
-		background:url(https://steam365.ru/index_files/logo_hover.jpg)!important;
+		background:url(https://swapzero.net/index_files/logo_hover.jpg)!important;
 		transform: translateX(10px);
 }
 .info-prof{
@@ -458,7 +458,7 @@ body.sidenav-toggled #mainNav .navbar-brand {
 	text-align: center;
 }
 .box-body {
-	/* margin-top: 20px; */
+	margin-top: 20px;
 	font-size: 14px;
 }
 .bg_primary {

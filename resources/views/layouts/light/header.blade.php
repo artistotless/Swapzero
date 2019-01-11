@@ -1,5 +1,5 @@
 
-<a class="navbar-brand" href="http://steam365.ru">
+<a class="navbar-brand" href="./">
     	
         <span class="logo" id="logowhite" style="
     display: block;
@@ -26,7 +26,7 @@
 
     margin: 10px;
 ">
-          <a class="nav-link dropdown-toggle" id="alertsDropdown" href="http://steam365.ru#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" id="alertsDropdown" href="./#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="icon-support icons"></i>
             <span><span class="d-none d-lg-inline-block">Поддержка</span>
               <span class="badge badge-pill badge-warning">Online</span>
@@ -37,7 +37,7 @@
             <h6 class="dropdown-header">Функции:</h6>
             <ul class="list_none fc-scroll ps">
             	<li>
-                	<a class="dropdown-item" href="http://steam365.ru#">
+                	<a class="dropdown-item" href="./#">
                       <i class="icon_box icon-bubble "></i>
                       <div class="notification-content">
                       	
@@ -47,7 +47,7 @@
                     </a>
                 </li>
                 <li>
-                	<a class="dropdown-item" href="https://steam365.ru/pages/faq.php">
+                	<a class="dropdown-item" href="./faq.php">
                       <i class="icon_box icon-question "></i>
                       <div class="notification-content">
                       	
@@ -57,7 +57,7 @@
                     </a>
                 </li>
                 <li>
-                	<a class="dropdown-item" href="http://steam365.ru#">
+                	<a class="dropdown-item" href="./#">
                       <i class="icon_box icon-wallet "></i>
                       <div class="notification-content">
                       	
@@ -67,7 +67,7 @@
                     </a>
                 </li>
                 <li>
-                	<a class="dropdown-item" href="http://steam365.ru#">
+                	<a class="dropdown-item" href="./#">
                       <i class="icon_box fa fa-exclamation-triangle "></i>
                       <div class="notification-content">
                       	
@@ -84,7 +84,7 @@
       <li class="nav-item dropdown menu-notification" style="
   
 ">
-          <a class="nav-link dropdown-toggle" id="messagesDropdown" href="http://steam365.ru#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" id="messagesDropdown" href="./#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="icon-grid icons"></i>
             <span><span class="d-none d-lg-inline-block" style="
 ">Боты</span>
@@ -96,7 +96,7 @@
             
             <ul class="list_none fc-scroll ps">
             	<li>
-                	<a class="dropdown-item" href="http://steam365.ru#">
+                	<a class="dropdown-item" href="./#">
                       <i class="icon_box fab fa-telegram-plane icons" style="
     background: #fc5c7d;
     color:white;
@@ -112,7 +112,7 @@
                 
                 
                 <div class="ps__rail-x" style="left: 0px; bottom: 0px;"></div><div class="ps__rail-y" style="top: 0px; right: 0px; height: 265px;"></div><li>
-                	<a class="dropdown-item" href="http://steam365.ru#">
+                	<a class="dropdown-item" href="./#">
                       <i class="icon_box fab fa-vk icons" style="
     background: #dedede;
 "></i>

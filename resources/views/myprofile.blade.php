@@ -1,5 +1,5 @@
  @extends('layouts.light')
-@section('title', 'Профиль пользователя')
+@section('title', 'Мой профиль')
 @section('content')
 @section('pitch')
 
@@ -34,7 +34,7 @@
                         <li><a target="blank" href="mailto://{{ Auth::user()->email }}"><i class=" fas fa-at"></i></a></li>
                         
                      </ul></nav>
-              <div class="box-body d-flex align-items-center justify-content-between">
+              <div class="d-flex align-items-center justify-content-between">
                 <a href="{{ route('settings') }}" class="btn btn-default" style="
     width: 100%;
     padding: 9px;
@@ -51,17 +51,17 @@
       <div class="col-md-8" style="padding-left: 5px;background: #667eea;">
        <div class="box bg_success" style="padding: 6px 45px;">
               
-              <div class="box-body info-prof d-flex align-items-center justify-content-between">
+              <div class="info-prof d-flex align-items-center justify-content-between">
                 <span>Денежный оборот</span>
                 <span class="info-prof-span">{{ Auth::user()->cashalltime }}₽</span>
               </div>
-         <div class="box-body info-prof  d-flex align-items-center justify-content-between">
+         <div class="info-prof  d-flex align-items-center justify-content-between">
                 <span>Репутация</span>
                 <span class="info-prof-span">{{ Auth::user()->rep }}</span>
-              </div><div class="box-body info-prof  d-flex align-items-center justify-content-between">
+              </div><div class=" info-prof  d-flex align-items-center justify-content-between">
                 <span>Тарифный план</span>
                 <span class="info-prof-span">{{ Auth::user()->plan }}</span>
-              </div><div class="box-body info-prof  d-flex align-items-center justify-content-between">
+              </div><div class=" info-prof  d-flex align-items-center justify-content-between">
                 <span>Идентификация:</span>
                 <span class="info-prof-span">
                   @if (Auth::user()->identified == "0") Не пройдена @else Пройдена @endif</span>
@@ -235,7 +235,7 @@
      <script>
   
      $(document).ready(function() {
-     
+
      
      var hash = md5("{{ Auth::user()->email }}");
        $(".gravatar").attr('data-gravatar_hash',hash);
@@ -270,66 +270,57 @@ google.charts.load('current', {packages: ['corechart', 'line']});
 google.charts.setOnLoadCallback(drawBasic);
 
 function drawBasic() {
-
-      var dataSwap = new google.visualization.DataTable();
-      dataSwap.addColumn('number', 'X');
-      dataSwap.addColumn('number', 'Обменов');
-
-      dataSwap.addRows([
-        [0, 0],   [1, 10],  [2, 23],  [3, 17],  [4, 18],  [5, 9],
-        [6, 11],  [7, 27],  [8, 33],  [9, 40],  [10, 32], [11, 35],
-        [12, 30], [13, 40], [14, 42], [15, 47], [16, 44], [17, 48],
-        [18, 52], [19, 54], [20, 42], [21, 55], [22, 56], [23, 57],
-        [24, 60], [25, 50], [26, 52], [27, 51], [28, 49], [29, 53],
-        [30, 55], [31, 60], [32, 61], [33, 59], [34, 62], [35, 65],
-        [36, 62], [37, 58], [38, 55], [39, 61], [40, 64], [41, 65],
-        [42, 63], [43, 66], [44, 67], [45, 69], [46, 69], [47, 70],
-        [48, 72], [49, 68], [50, 66], [51, 65], [52, 67], [53, 70],
-        [54, 71], [55, 72], [56, 73], [57, 75], [58, 70], [59, 68],
-        [60, 64], [61, 60], [62, 65], [63, 67], [64, 68], [65, 69],
-        [66, 70], [67, 72], [68, 75], [69, 80]
-      ]);
-         var dataCrypto = new google.visualization.DataTable();
-      dataCrypto.addColumn('number', 'X');
-      dataCrypto.addColumn('number', 'Обменов');
-
-      dataCrypto.addRows([
-        [0, 0],   [1, 10],  [2, 23],  [3, 17],  [4, 18],  [5, 9],
-        [6, 11],  [7, 27],  [8, 33],  [9, 40],  [10, 32], [11, 35],
-        [12, 30], [13, 40], [14, 42], [15, 47], [16, 44], [17, 48],
-        [18, 52], [19, 54], [20, 42], [21, 55], [22, 56], [23, 57],
-        [24, 60], [25, 50], [26, 52], [27, 51], [28, 49], [29, 53],
-        [30, 55], [31, 60], [32, 61], [33, 59], [34, 62], [35, 65],
-        [36, 62], [37, 58], [38, 55], [39, 61], [40, 64], [41, 65],
-        [42, 63], [43, 66], [44, 67], [45, 69], [46, 69], [47, 70],
-        [48, 72], [49, 68], [50, 66], [51, 65], [52, 67], [53, 70],
-        [54, 71], [55, 72], [56, 73], [57, 75], [58, 70], [59, 68],
-        [60, 64], [61, 60], [62, 65], [63, 67], [64, 68], [65, 69],
-        [66, 70], [67, 72], [68, 75], [69, 80]
-      ]);
-
+          var currentDate = new Date();
+          var currentDay = currentDate.getDate();
+          var currentMonth = currentDate.getMonth()+1;
+           var currentYear = currentDate.getFullYear();
+          if (currentDay < 10){ currentDay = '0' + currentDay;}
+          if (currentMonth < 10){ currentMonth = '0' + currentMonth;}
+          var dataSwap = google.visualization.arrayToDataTable([
+          ['Date', 'Обменов'],
+          
+          ['31.12',  0],
+          ['01.01',  25],
+          ['02.01',  1],
+          ['03.01',  25],
+          ['04.01',  5],
+          ['05.01',  0],
+          [currentDay +'.'+currentMonth ,  10]  
+           
+        ]);
+    var dataCrypto = google.visualization.arrayToDataTable([
+          ['Date', 'Сделок'],
+   
+        ['31.12',  0],
+        ['01.01',  25],
+        ['02.01',  1],
+        ['03.01',  25],
+        ['04.01',  5],
+        ['05.01',  0],    
+        ['06.01',  10]   
+        
+        ]);
       var optionsSwap = {
         hAxis: {
           title: 'Дата'
         },
         vAxis: {
-          title: 'Обмен валют (за последнее время)'
+          title: 'Обмены валют (за последнюю неделю)'
         }
       };
-      
- var optionsCrypto = {
+  var optionsCrypto= {
         hAxis: {
           title: 'Дата'
         },
         vAxis: {
-          title: 'Сделки на бирже (за последнее время)'
+          title: 'Сделки на бирже (за последнюю неделю)'
         }
       };
       var chartSwap = new google.visualization.LineChart(document.getElementById('chart_Swap'));
       var chartCrypto = new google.visualization.LineChart(document.getElementById('chart_Crypto'));
 
       chartSwap.draw(dataSwap, optionsSwap);
-      chartCrypto.draw(dataCrypto, optionsCrypto);
+       chartCrypto.draw(dataCrypto, optionsCrypto);
     }
 
 }); 

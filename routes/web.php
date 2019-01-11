@@ -39,6 +39,12 @@ Route::get('/internation', function () {
     return view('internation');
 });
 
+/*   SWAP API   */
+Route::post('api/qiwihook', 'Api\QiwiController@index');
+Route::post('api/yandexhook', 'Api\YandexController@index');
+
+
+
 Route::get('/myprofile', 'ProfileController@myprofile')->name('myprofile');
 
 Route::post('/applysettings', 'ProfileController@settings')->name('applysettings');
@@ -47,8 +53,9 @@ Route::get('/settings', 'ProfileController@settings')->name('settings');
 
 Route::get('/stats', 'StatsController@index')->name('stats');
 
+Route::post('/swapstart', 'Swap\SwapController@step1')->name('swapstart'); 
 
-
+Route::post('/swapend',   'Swap\SwapController@step2')->name('swapend'); 
 
 Route::get('/get_captcha/{config?}', function (\Mews\Captcha\Captcha $captcha, $config = 'default') {
     return $captcha->src($config);
