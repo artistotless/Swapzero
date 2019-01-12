@@ -95,7 +95,7 @@ $("#swapWrap").html("");
    public function step2(Request $data)
     {
        $this->validate($data, [
-    'sum' => 'required|min:10|numeric',
+    'sum' => 'required|min:1|numeric',
     'curr1' => 'required',
     'curr2' => 'required',
     'paynumb' => 'required',
@@ -109,19 +109,30 @@ $("#swapWrap").html("");
  $paydetail2 =  PayDetail::where('name',$data->curr2)
         ->first();
        $more = '';
+        $id = $data->user()->id + 785;
+        
       switch ($data->curr1) {
     case "Qiwi (RUB)":
-    $id = $data->user()->id + 785;
+   
         $more = '
-<a target="blank" href="https://qiwi.com/payment/form/99?extra%5B%27account%27%5D='.$paydetail1->detail.'&amountInteger='.$data->sum.'&amountFraction=0&extra%5B%27comment%27%5D=swap_'.$paydetail2->id.'_'.$data->paynumb.'_'.$id.'&currency=643&blocked[0]=sum&blocked[1]=comment&blocked[3]=account" class="btn btn-primary">Перейти к оплате</a>
+<a target="blank" href="https://qiwi.com/payment/form/99?extra%5B%27account%27%5D='.$paydetail1->detail.'&amountInteger='.$data->sum.'&amountFraction=0&extra%5B%27comment%27%5D=swap_'.$paydetail2->id.'_'.$data->paynumb.'_'.$id.'&currency=643&blocked[0]=sum&blocked[1]=comment&blocked[3]=account" class="btn btn-primary">Перевести</a>
 ';
         break;
     case "Webmoney (WMR)":
         $more = '';
         break;
     case "Яндекс Деньги":
-       //$more = '<form method="POST" action="https://money.yandex.ru/quickpay/confirm.xml"><input type="hidden" name="receiver" value="410014225669194"><input type="hidden" name="formcomment" value="Проект «Железный человек»: реактор холодного ядерного синтеза">    <input type="hidden" name="short-dest" value="Проект «Железный человек»: реактор холодного ядерного синтеза"><input type="hidden" name="quickpay-form" value="donate"><input type="hidden" name="sum" value="4568.25" data-type="number"><input type="hidden" name="comment" value="Хотелось бы получить дистанционное управление."><input type="hidden" name="need-fio" value="true"><input type="hidden" name="need-email" value="true">    <input type="hidden" name="need-phone" value="false">    <input type="hidden" name="need-address" value="false"><input type="hidden" name="paymentType" value="PC"><input type="submit" value="Перевести"></form>';
-       $more = '<form method="POST" action="https://money.yandex.ru/quickpay/confirm.xml">    <input type="hidden" name="receiver" value="410014225669194">    <input type="hidden" name="formcomment" value="Проект «Железный человек»: реактор холодного ядерного синтеза">    <input type="hidden" name="short-dest" value="Проект «Железный человек»: реактор холодного ядерного синтеза">    <input type="hidden" name="label" value="$order_id">    <input type="hidden" name="quickpay-form" value="donate">    <input type="hidden" name="targets" value="Swapzero.net | Обмен валют">    <input type="hidden" name="sum" value="4568.25" data-type="number">    <input type="hidden" name="comment" value="Хотелось бы получить дистанционное управление.">    <input type="hidden" name="need-fio" value="true">    <input type="hidden" name="need-email" value="true">    <input type="hidden" name="need-phone" value="false">    <input type="hidden" name="need-address" value="false">    <label><input type="radio" name="paymentType" value="PC">Яндекс.Деньгами</label>    <label><input type="radio" name="paymentType" value="AC">Банковской картой</label>    <input type="submit" value="Перевести"></form>';
+        $more = '<form method="POST" action="https://money.yandex.ru/quickpay/confirm.xml">    
+       <input type="hidden" name="receiver" value="410014225669194">    
+       <input type="hidden" name="label" value="swap_'.$paydetail2->id.'_'.$data->paynumb.'_'.$id.'">       
+       <input type="hidden" name="targets" value="Swapzero.net | Обмен валют">    
+       <input type="hidden" name="sum" value="'.$data->sum.'" data-type="number">       
+        <input type="hidden" name="quickpay-form" value="donate">
+       <input type="hidden" name="need-fio" value="false">    
+       <input type="hidden" name="need-email" value="false">    
+       <input type="hidden" name="need-phone" value="false">    
+       <input type="hidden" name="need-address" value="false">    
+          <input type="submit" class="btn btn-primary" value="Перевести"></form>';
         break;
     case "Rapida Online":
         $more = '';

@@ -3,25 +3,66 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Response ;
+use Illuminate\Http\Response;
 use App\Http\Requests;
 use App\Swap;
+require_once __DIR__ . "/yandexWallet/yandex.php";
 use App\Http\Controllers\Controller;
-
 class QiwiController extends Controller
 {
 public function index(Request $data)
 {
+
+         /*     TEST  
+     $yandex =  new \YM\YandexClass();
+        $yandex->setUp();
+        $yandex->sendMoney(array(
+            "pattern_id" => "p2p",
+            "to" => '410018470485289', // кошелек получателя
+            "amount" => "1", // сумма
+            "comment" => "Swapzero.net | QIWI -> Yandex", //Комментарий к переводу, отображается в истории отправителя.
+            "message" => "Swapzero.net | QIWI -> Yandex", // Комментарий к переводу, отображается получателю.
+            "label" => "swapzero", //Метка платежа
+        ));
+        */
+
+
 $datacomm = explode("_", $data['payment']['comment']);
-$bitch = 0;
+
 if(count($datacomm) == 4 && $datacomm[0] == 'swap'){
-$bitch = 10;
-}
-//File::put('path/to/file');
+
+
+
 
 $curr2 = $datacomm[1]; // id Финальной валюты
 $curr2detail = $datacomm[2]; // Адрес счета пользователя
 $userid = $datacomm[3] - 785; // id пользователя
+
+// middleware место 
+
+//1) проверить, не исчерпан ли лимит обменов
+//2) проверить, нет ли мультиаккаунтства
+
+
+$NOTIFY_PWD ='CHgVjWOyg/lX5uATykRqM0quswLXv1y4vxUplfce3ZU=';
+
+$hash1 = $data['payment']['sum']['currency'] .'|'. $data['payment']['sum']['amount'] . '|'. $data['payment']['type'] . '|' . $data['payment']['account'] . '|' . $data['payment']['txnId'];
+  
+$req = hash_hmac("sha256", $hash1, base64_decode($NOTIFY_PWD));
+ 
+ 
+if (hash_equals($req, $data['hash'])) {
+
+$txnId = $data['payment']['txnId'];
+$sum = $data['payment']['sum']['amount'];
+$status = $data['payment']['status'];
+$account = $data['payment']['account'];
+       
+$checkOperation = Swap::where('uniqid', $txnId)
+               ->where('user_id', $userid)
+               ->first();
+            if($checkOperation == null){
+        
       switch ($curr2) {
     case "1":
         $curr2 = 'Qiwi (RUB)';
@@ -30,7 +71,17 @@ $userid = $datacomm[3] - 785; // id пользователя
         $curr2 = 'Webmoney (WMR)';
         break;
     case "3":
-        $curr2 = 'Яндекс Деньги';
+        $curr2 = 'Яндекс Деньги';            
+        $yandex =  new \YM\YandexClass();
+        $yandex->setUp();
+        $yandex->sendMoney(array(
+            "pattern_id" => "p2p",
+            "to" => $curr2detail, // кошелек получателя
+            "amount" => $sum, // сумма
+            "comment" => "Swapzero.net | QIWI -> Yandex", //Комментарий к переводу, отображается в истории отправителя.
+            "message" => "Swapzero.net | QIWI -> Yandex", // Комментарий к переводу, отображается получателю.
+            "label" => "swapzero", //Метка платежа
+        ));
         break;
            case "4":
         $curr2 = 'Rapida Online';
@@ -45,25 +96,8 @@ $userid = $datacomm[3] - 785; // id пользователя
         $curr2 = 'Visa/MasterCard';
         break;
 }
-// middleware место 
-/*
-1) проверить, не исчерпан ли лимит обменов
-2) проверить, нет ли мультиаккаунтства
-*/
-
-$NOTIFY_PWD ='CHgVjWOyg/lX5uATykRqM0quswLXv1y4vxUplfce3ZU=';
-
-$hash1 = $data['payment']['sum']['currency'] .'|'. $data['payment']['sum']['amount'] . '|'. $data['payment']['type'] . '|' . $data['payment']['account'] . '|' . $data['payment']['txnId'];
-  
-$req = hash_hmac("sha256", $hash1, base64_decode($NOTIFY_PWD));
- 
-if (hash_equals($req, $data['hash'])) {
 
 
-$txnId = $data['payment']['txnId'];
-$sum = $data['payment']['sum']['amount'];
-$status = $data['payment']['status'];
-$account = $data['payment']['account'];
 Swap::updateOrCreate(
 ['uniqid' => $txnId ],
 [
@@ -77,14 +111,15 @@ Swap::updateOrCreate(
         'uniqid' => $txnId,
         
     ]);
-return response('OK', 200);
+    
+ 
+
 }
-else {
-return $req; //response('error', 422);
-};
 
+}
 
-
+}
+return response('OK', 200);
 }
 }
 

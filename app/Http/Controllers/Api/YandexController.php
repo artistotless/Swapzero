@@ -3,40 +3,87 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Response ;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests;
 use App\Swap;
 use App\Http\Controllers\Controller;
+
+require_once __DIR__ . "/qiwiWallet/qiwi.php";
 
 class YandexController extends Controller
 {
 public function index(Request $data)
 {
-$datacomm = explode("_", $data['payment']['comment']);
-$bitch = 0;
-if(count($datacomm) == 4 && $datacomm[0] == 'swap'){
-$bitch = 10;
-}
-//File::put('path/to/file');
 
-$curr2 = $datacomm[1]; // id Ôèíàëüíîé âàëşòû
-$curr2detail = $datacomm[2]; // Àäğåñ ñ÷åòà ïîëüçîâàòåëÿ
-$userid = $datacomm[3] - 785; // id ïîëüçîâàòåëÿ
+
+$datacomm = explode("_", $data['label']);
+
+if(count($datacomm) == 4 && $datacomm[0] == 'swap'){
+
+
+
+
+$curr2 = $datacomm[1]; // id Ğ¤Ğ¸Ğ½Ğ°Ğ»ÑŒĞ½Ğ¾Ğ¹ Ğ²Ğ°Ğ»ÑÑ‚Ñ‹
+$curr2detail = $datacomm[2]; // ĞĞ´Ñ€ĞµÑ ÑÑ‡ĞµÑ‚Ğ° Ğ¿Ğ¾Ğ»ÑŒĞ·Ğ¾Ğ²Ğ°Ñ‚ĞµĞ»Ñ
+$userid = $datacomm[3] - 785; // id Ğ¿Ğ¾Ğ»ÑŒĞ·Ğ¾Ğ²Ğ°Ñ‚ĞµĞ»Ñ
+
+
+
+// middleware Ğ¼ĞµÑÑ‚Ğ¾ 
+//1) Ğ¿Ñ€Ğ¾Ğ²ĞµÑ€Ğ¸Ñ‚ÑŒ, Ğ½Ğµ Ğ¸ÑÑ‡ĞµÑ€Ğ¿Ğ°Ğ½ Ğ»Ğ¸ Ğ»Ğ¸Ğ¼Ğ¸Ñ‚ Ğ¾Ğ±Ğ¼ĞµĞ½Ğ¾Ğ²
+//2) Ğ¿Ñ€Ğ¾Ğ²ĞµÑ€Ğ¸Ñ‚ÑŒ, Ğ½ĞµÑ‚ Ğ»Ğ¸ Ğ¼ÑƒĞ»ÑŒÑ‚Ğ¸Ğ°ĞºĞºĞ°ÑƒĞ½Ñ‚ÑÑ‚Ğ²Ğ°
+
+$NOTIFY_PWD ='sJIx9ZWtUV3iaBmlHR0TzHTC';
+
+
+$hash1 = $data['notification_type'].'&'.$data['operation_id'].'&'.$data['amount'].'&'.$data['currency'].'&'.$data['datetime'].'&'.$data['sender'].'&'.$data['codepro'].'&'.$NOTIFY_PWD.'&'.$data['label'];
+
+$req = sha1($hash1);
+ 
+
+
+if (hash_equals($req, $data['sha1_hash'])) {
+
+$txnId = $data['operation_id'];
+$sum = $data['amount'];
+$account = $data['sender'];
+
+
+
+
+$checkOperation = Swap::where('uniqid', $txnId)
+               ->where('user_id', $userid)
+               ->first();
+            if($checkOperation == null){
+        
       switch ($curr2) {
     case "1":
         $curr2 = 'Qiwi (RUB)';
+        
+        $ids = time().'000';
+        $qiwi =  new \QW\QiwiClass();
+        $qiwi->setUp();
+        $qiwi->sendMoney(array(
+            'id' => $ids, // ID Ğ¿Ğ»Ğ°Ñ‚ĞµĞ¶Ğ°,Ğ´Ğ¾Ğ»Ğ¶ĞµĞ½ Ğ±Ñ‹Ñ‚ÑŒ ÑƒĞ½Ğ¸ĞºĞ°Ğ»ÑŒĞ½Ñ‹Ğ¼
+            'sum' => ['amount' => $sum,'currency' => '643'], // ĞºĞ¾Ğ´ Ğ²Ğ°Ğ»ÑÑ‚Ñ‹ (643 - RUB)
+            'paymentMethod' => ['type' => 'Account', 'accountId' => '643'],
+            'comment' => 'Swapzero.net | Yandex -> QIWI', // ĞºĞ¾Ğ¼Ğ¼ĞµĞ½Ñ‚Ğ°Ñ€Ğ¸Ğ¹ Ğº Ğ¿Ğ»Ğ°Ñ‚ĞµĞ¶Ñƒ
+            'fields' => ['account' => '+'.$curr2detail] // ĞºÑƒĞ´Ğ° Ğ¾Ñ‚Ğ¿Ñ€Ğ°Ğ²Ğ»ÑÑ‚ÑŒ Ğ´ĞµĞ½ÑŒĞ³Ğ¸
+        ));
         break;
     case "2":
         $curr2 = 'Webmoney (WMR)';
         break;
     case "3":
-        $curr2 = 'ßíäåêñ Äåíüãè';
+        $curr2 = 'Ğ¯Ğ½Ğ´ĞµĞºÑ Ğ”ĞµĞ½ÑŒĞ³Ğ¸';
+  
         break;
            case "4":
         $curr2 = 'Rapida Online';
         break;
            case "5":
-        $curr2 = 'Ñáåğáàíê Online';
+        $curr2 = 'Ğ¡Ğ±ĞµÑ€Ğ±Ğ°Ğ½Ğº Online';
         break;
            case "6":
         $curr2 = 'PayPal (RUB)';
@@ -45,45 +92,44 @@ $userid = $datacomm[3] - 785; // id ïîëüçîâàòåëÿ
         $curr2 = 'Visa/MasterCard';
         break;
 }
-// middleware ìåñòî 
-/*
-1) ïğîâåğèòü, íå èñ÷åğïàí ëè ëèìèò îáìåíîâ
-2) ïğîâåğèòü, íåò ëè ìóëüòèàêêàóíòñòâà
-*/
-
-$NOTIFY_PWD ='CHgVjWOyg/lX5uATykRqM0quswLXv1y4vxUplfce3ZU=';
-
-$hash1 = $data['payment']['sum']['currency'] .'|'. $data['payment']['sum']['amount'] . '|'. $data['payment']['type'] . '|' . $data['payment']['account'] . '|' . $data['payment']['txnId'];
-  
-$req = hash_hmac("sha256", $hash1, base64_decode($NOTIFY_PWD));
- 
-if (hash_equals($req, $data['hash'])) {
 
 
-$txnId = $data['payment']['txnId'];
-$sum = $data['payment']['sum']['amount'];
-$status = $data['payment']['status'];
-$account = $data['payment']['account'];
 Swap::updateOrCreate(
 ['uniqid' => $txnId ],
 [
         'user_id' => $userid,
-        'currency1' => 'Qiwi (RUB)',
+        'currency1' => 'Ğ¯Ğ½Ğ´ĞµĞºÑ Ğ”ĞµĞ½ÑŒĞ³Ğ¸',
         'currency2' => $curr2,
         'sum' => $sum,
-        'status' => $status,
+        'status' => "SUCCESS",
         'curr1details' => $account ,
         'curr2details' => $curr2detail,
         'uniqid' => $txnId,
         
     ]);
+    
+ 
 return response('OK', 200);
 }
-else {
-return $req; //response('error', 422);
-};
+
+}
+
+
 
 
 
 }
+return response('OK', 200);
 }
+}
+
+
+/*
+ $content = '';
+$content .= $curr2.' ';
+$content .= $curr2detail.' ';
+$content .= $userid.' ';
+$content .= $data['sha1_hash'];
+*/
+//$content .= $hash1.' ';
+//$content .= $req.' ';

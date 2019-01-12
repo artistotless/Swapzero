@@ -135,12 +135,6 @@
    @if (Auth::check())
 
 
-  TEST QIWI HOOK
-
-  <button type="submit" id="testqiwihook" name="okbutton" > OK</button>
-
-
-
 
 
 <button id="submitswap" class="btn btn-default" style="
@@ -191,60 +185,9 @@
       	 $(document).ready(function() {
  
  $('#submitswap').bind( 'click', swapstart);
-  $('#testqiwihook').bind( 'click', test);
 
 
   });
-  function test(){
-
-     $.ajax({
-        type: "POST",
-                url: "api/qiwihook",
-                    
-                data: {
-                    messageId:"7814c49d-2d29-4b14-b2dc-36b377c76156",
-                    hookId:"88d65aec-18b4-4fd0-a28e-4fa6ca753559",
-                    
-                    payment:{
-                    txnId:"13353941550",
-                    date:"2018-06-27T13:39:00+03:00",
-                    type:"IN",
-                    status:"ERROR",
-                    errorCode:"0",
-                    personId:78000008000,
-                    account:"+79165238345",
-                    comment:"swap_3_410014225669194_786",
-                    provider:7,
-                    
-                    sum:{
-                    amount:1,currency:643},
-                    
-                    commission:{
-                    amount:0,
-                    currency:643},
-                    
-                    total:{
-                    amount:1,
-                    currency:643},
-                    
-                    signFields:"sum.currency,sum.amount,type,account,txnId"},
-                    
-                    hash:"57f35d203f41ccb99b0be1b44dbcdccdda9a4f25b67b473f948d43baef55bde0",
-                    version:"1.0.0",
-                    test:false,
-   
-                },
-
-   
-      success: function successFn(response) {
-alert(response);
-      },
-      error: function errorFn(response, status, error) {
-alert("ОШИБКА: "+response);
-      }
-  });
-    
-   }
    
    
    
