@@ -1,19 +1,19 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+## Р Р°Р·РґРµР»С‹
 
+<p >
+<a href="https://swapzero.net"><img src="https://img.icons8.com/material/24/000000/replace.png">  РћР±РјРµРЅ РІР°Р»СЋС‚</a>
+</p>
+<p >
+<a href="https://swapzero.net/crypto"><img src="https://img.icons8.com/material/24/000000/bitcoin.png">  РљСѓРїРёС‚СЊ/РџСЂРѕРґР°С‚СЊ РєСЂРёРїС‚РѕРІР°Р»СЋС‚Сѓ</a>
+</p>
+<p >
+<a href="https://swapzero.net/shop"><img src="https://img.icons8.com/material/24/000000/wallet.png">  Р РµС€РµРЅРёРµ РґР»СЏ РёРЅС‚РµСЂРЅРµС‚-РјР°РіР°Р·РёРЅРѕРІ</a>
+</p>
+
+## РЎРєСЂРёРЅС€РѕС‚
 <p align="center">
 <a href="https://swapzero.net"><img src="https://swapzero.net/index_files/photos/swapzero_scr.png" alt="Home Page"></a>
 
 </p>
 
-## Разделы
-
-<p >
-<a href="https://swapzero.net"><img src="https://img.icons8.com/material/24/000000/replace.png">Обмен валют</a>
-</p>
-<p >
-<a href="https://swapzero.net/crypto"><img src="https://img.icons8.com/material/24/000000/bitcoin.png">Купить/Продать криптовалюту</a>
-</p>
-<p >
-<a href="https://swapzero.net/shop"><img src="https://img.icons8.com/material/24/000000/wallet.png">Решение для интернет-магазинов</a>
-</p>
 
