@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'admin@steam365.ru'),
+        'address' => env('MAIL_FROM_ADDRESS', 'admin@swapzero.net'),
         'name' => env('MAIL_FROM_NAME', 'Swapzero'),
     ],
 
@@ -84,7 +84,7 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME','admin@steam365.ru'),
+    'username' => env('MAIL_USERNAME','admin@swapzero.net'),
 
     'password' => env('MAIL_PASSWORD','jkey7232050'),
 

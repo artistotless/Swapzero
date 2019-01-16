@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests;
 use App\Swap;
 use App\Http\Controllers\Controller;
@@ -48,7 +48,7 @@ if (hash_equals($req, $data['sha1_hash'])) {
 $txnId = $data['operation_id'];
 $sum = $data['amount'];
 $account = $data['sender'];
-
+$status = "В процессе";
 
 
 
@@ -71,6 +71,7 @@ $checkOperation = Swap::where('uniqid', $txnId)
             'comment' => 'Swapzero.net | Yandex -> QIWI', // комментарий к платежу
             'fields' => ['account' => '+'.$curr2detail] // куда отправлять деньги
         ));
+        $status = "Успешно";
         break;
     case "2":
         $curr2 = 'Webmoney (WMR)';
@@ -93,7 +94,20 @@ $checkOperation = Swap::where('uniqid', $txnId)
         break;
 }
 
-
+    $subject = "Обмен: Яндекс Деньги -> {$curr2}";
+    define('SUBJECT',$subject);
+      Mail::send('emails.newswap', array(
+  'user' => $userid,
+  'curr1' => 'Яндекс Деньги',
+  'curr2' => $curr2,
+  'sum' => $sum,
+     'curr1detail' => $account,
+  'curr2detail' => $curr2detail
+  ), function($message) 
+    {       
+    $message->to('neuralink7232050@gmail.com')->subject(SUBJECT);   
+    });
+    
 Swap::updateOrCreate(
 ['uniqid' => $txnId ],
 [
@@ -101,7 +115,7 @@ Swap::updateOrCreate(
         'currency1' => 'Яндекс Деньги',
         'currency2' => $curr2,
         'sum' => $sum,
-        'status' => "SUCCESS",
+        'status' => $status,
         'curr1details' => $account ,
         'curr2details' => $curr2detail,
         'uniqid' => $txnId,
@@ -113,10 +127,6 @@ return response('OK', 200);
 }
 
 }
-
-
-
-
 
 }
 return response('OK', 200);

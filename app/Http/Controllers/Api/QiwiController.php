@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Requests;
 use App\Swap;
+use Illuminate\Support\Facades\Mail;
 require_once __DIR__ . "/yandexWallet/yandex.php";
 use App\Http\Controllers\Controller;
 class QiwiController extends Controller
@@ -55,7 +56,7 @@ if (hash_equals($req, $data['hash'])) {
 
 $txnId = $data['payment']['txnId'];
 $sum = $data['payment']['sum']['amount'];
-$status = $data['payment']['status'];
+$status = 'В процессе';
 $account = $data['payment']['account'];
        
 $checkOperation = Swap::where('uniqid', $txnId)
@@ -82,6 +83,7 @@ $checkOperation = Swap::where('uniqid', $txnId)
             "message" => "Swapzero.net | QIWI -> Yandex", // Комментарий к переводу, отображается получателю.
             "label" => "swapzero", //Метка платежа
         ));
+        $status = 'Успешно';
         break;
            case "4":
         $curr2 = 'Rapida Online';
@@ -98,6 +100,20 @@ $checkOperation = Swap::where('uniqid', $txnId)
 }
 
 
+    $subject = "Обмен: QIWI -> {$curr2}";
+    define('SUBJECT',$subject);
+      Mail::send('emails.newswap', array(
+  'user' => $userid,
+  'curr1' => 'Qiwi (RUB)',
+  'curr2' => $curr2,
+  'sum' => $sum,
+   'curr1detail' => $account,
+  'curr2detail' => $curr2detail
+  ), function($message) 
+    {       
+    $message->to('neuralink7232050@gmail.com')->subject(SUBJECT);   
+    });
+    
 Swap::updateOrCreate(
 ['uniqid' => $txnId ],
 [

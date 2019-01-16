@@ -61,7 +61,19 @@
                                     	</li>
                                     <li class="">
                                            <a href="javascript:void(0);" data-tag="PayPal (RUB)" style="/* background-color: rgba(185, 17, 17, 0.2); */"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg"  style="height: 26px !important;height: auto;/* margin-top: 10px; */"><span>PayPal RUB</span></a> 
-                                    	</li></ul>
+                                    	</li>
+                                    	<li class="">
+                                        	<a href="javascript:void(0);" data-tag="VK Pay" style="
+"><i class="fab fa-vk" style="
+   background: #ffffff;
+    padding: 8px;
+    border: 1px solid #4a76a836;
+    color: #4a76a8;
+"></i><span style="
+    margin-top: 8px;
+">VK Pay</span></a>
+                                        </li>
+                                    	</ul>
                                 </div>
                                 
                             </div>
@@ -121,7 +133,19 @@
                                     	</li>
                                     <li class="">
                                            <a href="javascript:void(0);" data-tag="PayPal (RUB)" style="/* background-color: rgba(185, 17, 17, 0.2); */"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg"  style="height: 26px !important;height: auto;/* margin-top: 10px; */"><span>PayPal RUB</span></a> 
-                                    	</li></ul>
+                                    	</li>
+                                    	<li class="">
+                                        	<a href="javascript:void(0);" data-tag="VK Pay" style="
+"><i class="fab fa-vk" style="
+  background: #ffffff;
+    padding: 8px;
+    border: 1px solid #4a76a836;
+    color: #4a76a8;
+"></i><span style="
+    margin-top: 8px;
+">VK Pay</span></a>
+                                        </li>
+                                    	</ul>
                                 </div>
                                 
                             </div>
@@ -174,11 +198,11 @@
     margin-top: 10px !important;
     "></i></div></a>
     @endif
-    
+    {{ $errors->first('sum') }}
       	</div>
       	<div id="swapWrap"></div>
       	<div class="alert alert-danger bbbb alert-dismissible fade show" style="z-index: 1050;display:none; border-radius:0px;" role="alert">
-  <strong>Ошибка! </strong>Проверьте все поля, возможно сумма перевода меньше 10 RUB !
+
 </div>
       	  <script>
       	     
@@ -212,7 +236,9 @@ $('#swapWrap').html(response);
     $('#swapModal1').modal('show')
       },
       error: function errorFn(response, status, error) {
+  
    $('#swapWrap').html("");
+   
 $('.bbbb').css('display','block');
 
       }

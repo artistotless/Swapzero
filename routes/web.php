@@ -38,11 +38,12 @@ Route::get('/wallet', function () {
 Route::get('/internation', function () {
     return view('internation');
 });
+    
 
 /*   SWAP API   */
 Route::post('api/qiwihook', 'Api\QiwiController@index');
 Route::post('api/yandexhook', 'Api\YandexController@index');
-
+Route::post('api/webmoneyhook', 'Api\WebmoneyController@index');
 
 
 Route::get('/myprofile', 'ProfileController@myprofile')->name('myprofile');

@@ -10,7 +10,7 @@ class YandexClass {
 
         
     function setUp() {
-        $this->api = new \YandexMoney\API(ACCESS_TOKEN);
+        $this->api = new \YandexMoney\API(YANDEX_TOKEN);
     }
 
 

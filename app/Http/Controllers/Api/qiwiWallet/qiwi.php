@@ -10,7 +10,7 @@ namespace QW;
 
         
     function setUp() {
-        $this->api = new \QiwiLib\Qiwi(PHONE_NUMBER, ACCESS_TOKEN);
+        $this->api = new \QiwiLib\Qiwi(PHONE_NUMBER, QIWI_TOKEN);
     }
 
 	  function getBalance() {

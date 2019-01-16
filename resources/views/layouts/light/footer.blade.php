@@ -26,7 +26,11 @@
         <div class="text-center">
           <small style="
     color: #8e8e8e;
-"><a href="http://bestwebcreator.com/cryptocash/demo/dashboard/index.html">swapzero.net</a> - Платёжная система,p2p биржа,обмен валют.</small>
+"><a href="http://bestwebcreator.com/cryptocash/demo/dashboard/index.html">Главная</a> |
+<a href="http://bestwebcreator.com/cryptocash/demo/dashboard/index.html">Контакты</a> |
+<a href="http://bestwebcreator.com/cryptocash/demo/dashboard/index.html">Условия соглашения</a> |
+<a href="http://bestwebcreator.com/cryptocash/demo/dashboard/index.html">Тарифы</a>
+</small>
 
         </div>
       </div>
