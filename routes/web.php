@@ -32,8 +32,8 @@ Route::get('/plans', function () {
 Route::get('/crypto', function () {
     return view('crypto');
 });
-Route::get('/wallet', function () {
-    return view('wallet');
+Route::get('/shop', function () {
+    return view('shop');
 });
 Route::get('/internation', function () {
     return view('internation');

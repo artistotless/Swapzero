@@ -20,7 +20,7 @@
 ">Переводы по миру</span>
           </a>
         </li><li class="nav-item">
-          <a class="nav-link" href="./wallet">
+          <a class="nav-link" href="./shop">
             <i class="icon-bag icons"></i>
             <span class="nav-link-text">Интернет-магазинам</span>
           </a>
